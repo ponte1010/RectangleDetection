@@ -9,10 +9,14 @@ import UIKit
 import SceneKit
 import ARKit
 import Vision
+import AVFoundation
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDelegate {
     
     @IBOutlet weak var sceneView: ARSCNView!
+    
+    // AVSpeechSynthesizerのインスタンスを生成
+    let synthesizer = AVSpeechSynthesizer()
     
     // バウンディングボックスのパスを描画するレイヤー
     var drawLayer: CALayer?
@@ -82,6 +86,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             if let frame = self.sceneView.session.currentFrame {
                 findRectangle(frame: frame)
+                
+                let utterance = AVSpeechUtterance.init(string: "矩形を認識しました")
+                let voice = AVSpeechSynthesisVoice.init(language: "ja-JP")
+                utterance.voice = voice
+                synthesizer.speak(utterance)
             }
         }
     }
