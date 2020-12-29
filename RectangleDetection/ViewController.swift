@@ -122,7 +122,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         CATransaction.begin()
         
         for observation in rectangles {
-            let rectLayer = shapeLayerRect(color: .blue, observation: observation)
+            let rectLayer = shapeLayerRect(color: .red, observation: observation)
             
             // 画像の上にpathLayerを追加
             drawlayer.addSublayer(rectLayer)
