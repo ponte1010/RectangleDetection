@@ -86,11 +86,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
             
             if let frame = self.sceneView.session.currentFrame {
                 findRectangle(frame: frame)
-                
-                let utterance = AVSpeechUtterance.init(string: "矩形を認識しました")
-                let voice = AVSpeechSynthesisVoice.init(language: "ja-JP")
-                utterance.voice = voice
-                synthesizer.speak(utterance)
             }
         }
     }
@@ -135,6 +130,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
             
             // 画像の上にpathLayerを追加
             drawlayer.addSublayer(rectLayer)
+            
+            let utterance = AVSpeechUtterance.init(string: "矩形を認識しました")
+            let voice = AVSpeechSynthesisVoice.init(language: "ja-JP")
+            utterance.voice = voice
+            synthesizer.speak(utterance)
         }
         
         CATransaction.commit()
